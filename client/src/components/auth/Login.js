@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
+import {connect} from 'react-redux'
+import {login} from "../../actions/auth";
+import {setAlert} from "../../actions/alert";
 
 Login.propTypes = {
-
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 function Login(props) {
@@ -23,7 +27,11 @@ function Login(props) {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    console.log('SUCCESS')
+    props.login(email, password)
+  }
+
+  if (props.isAuthenticated) {
+    return <Redirect to="/dashboard" />
   }
 
   return (
@@ -67,4 +75,10 @@ function Login(props) {
   );
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps, {login, setAlert})(Login);

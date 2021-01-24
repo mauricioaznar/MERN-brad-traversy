@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 
 Alert.propTypes = {
-  alert: PropTypes.array.isRequired
+  alerts: PropTypes.array.isRequired
 };
 
 function Alert({alerts}) {

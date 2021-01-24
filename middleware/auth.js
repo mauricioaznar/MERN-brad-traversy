@@ -4,9 +4,14 @@ const config = require('config')
 module.exports = function (req, res, next) {
   // Get token from header
   const tokenHeader = req.header('Authorization')
-  const token = tokenHeader.replace('Bearer ', '')
+  if (!tokenHeader) {
+    return res.status(401).json({
+      msg: 'No token header, authorization denied'
+    })
+  }
 
   // Check if not token
+  const token = tokenHeader.replace('Bearer ', '')
   if (!token) {
     return res.status(401).json({
       msg: 'No token, authorization denied'
