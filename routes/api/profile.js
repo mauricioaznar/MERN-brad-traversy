@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth')
 const { body, validationResult } = require('express-validator')
 const Profile = require('../../models/Profile')
 const User = require('../../models/User')
+const Post = require('../../models/Post')
 const request = require('request')
 const config = require('config')
 
@@ -42,7 +43,7 @@ router.post('/',
     if (!errors.isEmpty()) {
       return res.status(400).json({errors: errors.array()})
     }
-    // destructure the request
+    console.log(req.body)
     const {
       website,
       skills,
@@ -57,6 +58,7 @@ router.post('/',
 
     const profileFields = {
       user: req.user.id,
+      website: website,
       // website:
       //   website && website !== ''
       //     ? normalize(website, { forceHttps: true })
@@ -136,8 +138,8 @@ router.get('/user/:user_id', async (req, res) => {
 router.delete('/',
   auth,
   async (req, res) => {
-  // TODO remove users posts
     try {
+      await Post.deleteMany({user: req.user.id})
       await Profile.findOneAndRemove({user: req.user.id})
       await User.findOneAndRemove({_id: req.user.id})
       return res.json({msg: 'User deleted'})
