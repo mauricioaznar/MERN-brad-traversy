@@ -6,7 +6,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  CLEAR_PROFILE, ACCOUNT_DELETED
+  ACCOUNT_DELETED
 } from "../actions/types";
 
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
   user: null
 }
 
-export default function (state = initialState, action) {
+export default function auth (state = initialState, action) {
   const {type, payload} = action
 
   switch(type) {
