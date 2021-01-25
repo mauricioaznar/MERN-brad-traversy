@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://maguas:maguas@cluster0.mdbjo.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "0d6551e4afe077889678",
+  "githubSecret": "307bceb707b63aa757619e76892473b7ce9502ee"
+}
