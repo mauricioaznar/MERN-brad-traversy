@@ -24,6 +24,11 @@ function Navbar(props) {
           Developers
         </Link>
       </li>
+      <li>
+        <Link to="/posts">
+          Posts
+        </Link>
+      </li>
       <li><a onClick={props.logout} href="#!">
         <i className="fas fa-sign-out-alt"></i>{' '}
         <span className="hide-sm">Logout</span>

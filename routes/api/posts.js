@@ -216,7 +216,7 @@ router.post(
 
       await post.save()
 
-      return res.json(post)
+      return res.json(post.comments)
     } catch (err) {
       console.error(err.message)
       return res.status(500).send('Server Error')
@@ -262,7 +262,7 @@ router.delete(
 
       await post.save()
 
-      return res.json(post)
+      return res.json(post.comments)
     } catch (err) {
       console.error(err.message)
       return res.status(500).send('Server Error')
